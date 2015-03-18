@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-8">
+  logo here</br>
+  .</br>
+  .</br>
+  .
+  </div>
+  <div class="col-md-4">
+		<% if user_signed_in? && current_user.admin? %>
+			Logged in as <strong><%= current_user.name %></strong>.
+			<%= '前台' %>
+			<%= '後台' %>
+			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+			<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+		<% elsif user_signed_in? && current_user.seller? %>
+			Logged in as <strong><%= current_user.name %></strong>.
+			<%= link_to '商家後台', seller_products_path %>
+			<%= link_to '首頁', stores_path %>
+			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+			<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+		<% elsif user_signed_in? %>
+			Logged in as <strong><%= current_user.name %></strong>.
+			<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+			<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+		<% else %>
+			<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+			<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+		<% end %>
+  </div>
+</div>

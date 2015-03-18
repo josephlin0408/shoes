@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
+  devise_for :users
+
+  #前端
+  resources :stores
+  root 'stores#index'
+
+  #二手商
+  namespace :seller do 
+    root 'products#index'
+    resources :products
+    resources :settings
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
