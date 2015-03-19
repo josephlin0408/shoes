@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318033732) do
+ActiveRecord::Schema.define(version: 20150319091824) do
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "store_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",    limit: 255, null: false
@@ -29,8 +36,16 @@ ActiveRecord::Schema.define(version: 20150318033732) do
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
+  create_table "store_product_categoryships", force: :cascade do |t|
+    t.integer  "store_id",            limit: 4
+    t.string   "product_category_id", limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "store_products", force: :cascade do |t|
     t.string   "name",         limit: 255
+    t.string   "category",     limit: 255
     t.integer  "store_id",     limit: 4
     t.integer  "origin_price", limit: 4
     t.integer  "price",        limit: 4

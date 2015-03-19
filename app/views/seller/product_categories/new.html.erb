@@ -1,0 +1,12 @@
+<%= render 'common/top' %>
+<div class="row">
+  <%= render 'common/menu' %>
+  <div class="col-md-7">
+  	<%= bootstrap_form_for @product_category, url: seller_product_categories_path(@product_category) do |n| %>
+  		<%= n.text_field :name %>
+      <%= n.hidden_field :store_id, value: @sid %>
+  		<%= n.submit '新增' %>
+  		<%= link_to('返回', seller_products_path) %>
+  	<% end %>
+  </div>
+</div>

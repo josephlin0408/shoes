@@ -1,15 +1,18 @@
 <%= render 'common/top' %>
 <div class="row">
   <%= render 'common/menu' %>
-  <div class="col-md-9">
-  	<%= bootstrap_form_for @product do |n| %>
+  <div class="col-md-7">
+  	<%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
   		<%= n.text_field :name %>
-  		<%= n.hidden_field :store_id %>
+      <%= n.collection_select(:category, ProductCategory.all, :id, :name) %>
+  		<%= n.hidden_field :store_id, value: @sid %>
   		<%= n.text_field :origin_price %>
   		<%= n.text_field :price %>
   		<%= n.text_field :size %>
-  		<%= n.text_field :image %>
-  		<%= m.text_area :content, "", :class => "redactor", :rows => 40, :cols => 120 %>
+  		<%= n.file_field :image %>
+  		<%= n.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>
+  		<%= n.submit '新增' %>
+  		<%= link_to('返回', seller_products_path) %>
   	<% end %>
   </div>
 </div>

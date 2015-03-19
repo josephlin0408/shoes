@@ -1,0 +1,17 @@
+<%= render 'common/top' %>
+<div class="row">
+  <%= render 'common/menu' %>
+  <div class="col-md-7">
+  	<%= bootstrap_form_for @product, url: seller_product_path(@product) do |e| %>
+  		<%= e.submit '保存' %>
+  		<%= link_to('返回', seller_products_path, class: :"btn btn-default", type: :"button") %>
+  	<hr>
+  		<%= e.text_field :name %>
+  		<%= e.text_field :origin_price %>
+  		<%= e.text_field :price %>
+  		<%= e.text_field :size %>
+  		<%= e.file_field :image %>
+  		<%= e.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>
+	 <% end %>
+  </div>
+</div>

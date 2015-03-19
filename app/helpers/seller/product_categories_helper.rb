@@ -1,0 +1,2 @@
+module Seller::ProductCategoriesHelper
+end

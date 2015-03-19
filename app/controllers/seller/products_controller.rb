@@ -1,9 +1,12 @@
 class Seller::ProductsController < Seller::BaseController
 	def index
-		@products = StoreProduct.all
+		@store = Store.find_by_user_id(current_user.id)
+		@products = StoreProduct.where(store_id: @store.id)
 	end
 
 	def new
+		@store = Store.find_by_user_id(current_user.id)
+		@sid = @store.id
 		@product = StoreProduct.new
 	end
 
@@ -16,8 +19,28 @@ class Seller::ProductsController < Seller::BaseController
 		end
 	end
 
+	def edit
+		@product = StoreProduct.find(params[:id])
+	end
+
+	def update
+		@product = StoreProduct.find(params[:id])
+		if @product.update(product_params)
+			redirect_to seller_products_path
+		else
+			render :edit
+		end
+	end
+
+	def destroy
+		@product = StoreProduct.find(params[:id])
+		@product.destroy
+
+		redirect_to seller_products_path
+	end
+
 	private
 	def product_params
-		params.require(:store_product).permit(:name, :store_id, :origin_price, :price, :size, :image, :content)
+		params.require(:store_product).permit(:name, :category, :store_id, :origin_price, :price, :size, :image, :content)
 	end
 end

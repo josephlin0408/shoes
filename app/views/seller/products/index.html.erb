@@ -2,6 +2,12 @@
 <div class="row">
   <%= render 'common/menu' %>
   <div class="col-md-9">
-  <%= link_to('新增商品', new_seller_product_path) %>
+  <%= link_to('新增商品', new_seller_product_path) %></br>
+  <hr>
+	  <% @products.each do |i| %>
+	  	<%= link_to(i.name, edit_seller_product_path(i)) %>
+	  	<%= i.price %>
+	  	<%= image_tag i.image_url(:thumb).to_s %>
+	  <% end %>
   </div>
 </div>
