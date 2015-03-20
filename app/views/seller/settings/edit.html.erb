@@ -1,0 +1,15 @@
+<%= render 'common/top' %>
+<div class="row">
+  <%= render 'common/menu' %>
+  <div class="col-md-7">
+  	<%= bootstrap_form_for @setting, url: seller_setting_path(@setting) do |e| %>
+  		<%= e.submit '保存' %>
+  		<%= link_to('返回', seller_settings_path, class: :"btn btn-default", type: :"button") %>
+  	<hr>
+  		<%= e.text_field :name %>
+  		<%= e.text_field :tel %>
+  		<%= e.text_field :address %>
+  		<%= e.text_field :zip %>
+	 <% end %>
+  </div>
+</div>

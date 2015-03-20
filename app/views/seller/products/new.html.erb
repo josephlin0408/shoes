@@ -4,7 +4,7 @@
   <div class="col-md-7">
   	<%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
   		<%= n.text_field :name %>
-      <%= n.collection_select(:category, ProductCategory.all, :id, :name) %>
+      <%= n.collection_select(:category, ProductCategory.where(store_id: @sid), :id, :name) %>
   		<%= n.hidden_field :store_id, value: @sid %>
   		<%= n.text_field :origin_price %>
   		<%= n.text_field :price %>

@@ -1,0 +1,32 @@
+<%= render 'common/top' %>
+<div class="row">
+  <%= render 'common/menu' %>
+  <div class="col-md-9">
+  <%= link_to('新增商品', new_seller_product_path) %></br>
+  <hr>
+		<table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>商店名稱</th>
+                <th>電話</th>
+                <th>地址</th>
+                <th>郵遞區號</th>
+                <th>申請開店日期</th>
+                <th>編輯資料</th>
+            </tr>
+        </thead>
+        <% @settings.each do |i| %>
+        <tbody>
+          <tr>	         
+            <td><%= i.name %></td>
+            <td><%= i.tel %></td>
+            <td><%= i.address %></td>
+            <td><%= i.zip %></td> 
+            <td><%= i.created_at %></td>
+            <td><%= link_to('編輯', edit_seller_setting_path(i)) %></td>        
+          </tr>
+        </tbody>
+        <% end %>
+    </table>
+  </div>
+</div>

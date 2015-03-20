@@ -4,10 +4,29 @@
   <div class="col-md-9">
   <%= link_to('新增商品', new_seller_product_path) %></br>
   <hr>
-	  <% @products.each do |i| %>
-	  	<%= link_to(i.name, edit_seller_product_path(i)) %>
-	  	<%= i.price %>
-	  	<%= image_tag i.image_url(:thumb).to_s %>
-	  <% end %>
+		<table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>商品圖片</th>
+                <th>商品名稱</th>
+                <th>商品類別</th>
+                <th>創建日期</th>
+                <th>編輯</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+        <% @products.each do |i| %>
+        <tbody>
+          <tr>	    
+          	<td><%= image_tag i.image_url(:small).to_s %></td>       
+            <td><%= i.name %></td>
+            <td><%= i.price %></td>
+            <td><%= i.created_at %></td>
+            <td><%= link_to('編輯', edit_seller_product_path(i)) %></td>          
+            <td><%= link_to('刪除', seller_product_path(i), method: :delete, data: {confirm: "確定要刪除此商品?"}) %></td>
+          </tr>
+        </tbody>
+        <% end %>
+    </table>
   </div>
 </div>
