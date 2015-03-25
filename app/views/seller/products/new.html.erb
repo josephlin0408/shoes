@@ -1,18 +1,44 @@
-<%= render 'common/top' %>
-<div class="row">
-  <%= render 'common/menu' %>
-  <div class="col-md-7">
-  	<%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
-  		<%= n.text_field :name %>
-      <%= n.collection_select(:category, ProductCategory.where(store_id: @sid), :id, :name) %>
-  		<%= n.hidden_field :store_id, value: @sid %>
-  		<%= n.text_field :origin_price %>
-  		<%= n.text_field :price %>
-  		<%= n.text_field :size %>
-  		<%= n.file_field :image %>
-  		<%= n.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>
-  		<%= n.submit '新增' %>
-  		<%= link_to('返回', seller_products_path) %>
-  	<% end %>
+<%= render 'seller/sellercommon/top' %>
+<%= render 'seller/sellercommon/menu' %>
+<div class="content">
+  <div class="header">
+    <%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
+      <h1 class="page-title">新增商品</h1>
+      <ul class="breadcrumb">
+        <li><%= link_to('首頁', seller_products_path) %></li>
+        <li><%= link_to('商品管理', seller_products_path) %></li>
+        <li class="active">新增商品</li>
+    </ul>
   </div>
+  <div class="main-content">            
+    <div class="row">
+      <div class="col-md-4">
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane active in" id="home">
+            <%= n.text_field :name %>
+            <%= n.collection_select(:category, ProductCategory.where(store_id: @sid), :id, :name) %>
+            <%= n.hidden_field :store_id, value: @sid %>
+            <%= n.text_field :origin_price %>
+            <%= n.text_field :price %>
+            <%= n.text_field :size %>  
+            <%= n.file_field :image %>                       
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <%= n.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>      
+        <div class="btn-toolbar list-toolbar">
+          <%= n.submit '新增', class: :"btn btn-primary" %>
+          <%= link_to('返回', seller_products_path, class: :"btn btn-primary") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <footer>
+     <hr>
+    <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
+    <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+    <p>© 2014 <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+  </footer>
 </div>

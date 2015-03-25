@@ -1,6 +1,8 @@
 class Seller::BaseController < ApplicationController
 	before_action :login_required, :required_seller!
 
+	layout 'seller.html.erb'
+
 	protected
 
 	#判斷如果身分不是seller就無法進入賣家後台

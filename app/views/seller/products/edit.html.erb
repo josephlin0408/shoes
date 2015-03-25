@@ -1,17 +1,57 @@
-<%= render 'common/top' %>
-<div class="row">
-  <%= render 'common/menu' %>
-  <div class="col-md-7">
-  	<%= bootstrap_form_for @product, url: seller_product_path(@product) do |e| %>
-  		<%= e.submit '保存' %>
-  		<%= link_to('返回', seller_products_path, class: :"btn btn-default", type: :"button") %>
-  	<hr>
-  		<%= e.text_field :name %>
-  		<%= e.text_field :origin_price %>
-  		<%= e.text_field :price %>
-  		<%= e.text_field :size %>
-  		<%= e.file_field :image %>
-  		<%= e.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>
-	 <% end %>
+<%= render 'seller/sellercommon/top' %>
+<%= render 'seller/sellercommon/menu' %>
+<div class="content">
+  <div class="header">    
+      <h1 class="page-title">商品編輯</h1>
+      <ul class="breadcrumb">
+        <li><%= link_to('首頁', seller_products_path) %></li>
+        <li><%= link_to('商品管理', seller_products_path) %></li>
+        <li class="active"><%= @product.name %></li>
+    </ul>
   </div>
+  <%= bootstrap_form_for @product, url: seller_product_path(@product) do |e| %>
+  <div class="main-content">            
+    <div class="row">
+      <div class="col-md-4">
+        <%= e.text_field :name %>
+        <%= e.text_field :origin_price %>
+        <%= e.text_field :price %>
+        <%= e.text_field :size %>  
+        <%= e.file_field :image %>
+      </div>
+      <div class="col-md-7">
+        <%= e.text_area :content, :class => "redactor", :rows => 40, :cols => 120 %>      
+        <div class="btn-toolbar list-toolbar">
+          <%= e.submit '保存', class: :"btn btn-primary" %>
+          <%= link_to('返回', seller_products_path, class: :"btn btn-primary") %>
+          <a href="#<%= @product.id %>" data-toggle="modal" class="btn btn-danger">Delete</a>
+        </div>        
+        <div class="modal small fade" id="<%= @product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Delete Confirmation</h3>
+              </div>
+              <div class="modal-body">              
+                <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete <%= @product.name %>?</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <%= link_to('Delete', seller_product_path(e), class: :"btn btn-danger", data: {dismiss: "modal"}, method: :delete) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <footer>
+     <hr>
+    <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
+    <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+    <p>© 2014 <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+  </footer>
 </div>
+

@@ -23,6 +23,8 @@ class Seller::ProductCategoriesController < Seller::BaseController
 
 	def edit
 		@product_category = ProductCategory.find(params[:id])
+		@store = Store.find_by_user_id(current_user.id)
+		@sid = @store.id
 	end
 
 	def update

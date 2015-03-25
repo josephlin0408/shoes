@@ -1,32 +1,49 @@
-<%= render 'common/top' %>
-<div class="row">
-  <%= render 'common/menu' %>
-  <div class="col-md-9">
-  <%= link_to('新增商品', new_seller_product_path) %></br>
-  <hr>
-		<table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>商店名稱</th>
-                <th>電話</th>
-                <th>地址</th>
-                <th>郵遞區號</th>
-                <th>申請開店日期</th>
-                <th>編輯資料</th>
-            </tr>
-        </thead>
-        <% @settings.each do |i| %>
-        <tbody>
-          <tr>	         
-            <td><%= i.name %></td>
-            <td><%= i.tel %></td>
-            <td><%= i.address %></td>
-            <td><%= i.zip %></td> 
-            <td><%= i.created_at %></td>
-            <td><%= link_to('編輯', edit_seller_setting_path(i)) %></td>        
-          </tr>
-        </tbody>
-        <% end %>
-    </table>
-  </div>
+<%= render 'seller/sellercommon/top' %>
+<%= render 'seller/sellercommon/menu' %>
+<div class="content">
+  <div class="header">      
+    <h1 class="page-title">設定</h1>
+            <ul class="breadcrumb">
+    <li><%= link_to('首頁', seller_products_path) %></li>    
+    <li class="active">設定</li>
+  </ul>
+  </div> 
+  <div class="main-content">
+  <table class="table">   
+    <thead>
+      <tr>
+        <th>商店名稱</th>
+        <th>電話</th>
+        <th>地址</th>
+        <th>郵遞區號</th>
+        <th>申請開店日期</th>
+        <th>編輯資料</th>
+        <th style="width: 3.5em;"></th>
+      </tr>
+    </thead>
+    <% @settings.each do |i| %>
+    <tbody>
+      <tr>
+        <td><%= i.name %></td>
+        <td><%= i.tel %></td>
+        <td><%= i.address %></td>
+        <td><%= i.zip %></td> 
+        <td><%= i.created_at %></td>
+        <td>
+            <%= link_to edit_seller_setting_path(i) do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+  </table>
+
+  <footer>
+      <hr>
+      <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
+      <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+      <p>© 2014 <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+  </footer>
 </div>
+

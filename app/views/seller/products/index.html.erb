@@ -1,32 +1,68 @@
-<%= render 'common/top' %>
-<div class="row">
-  <%= render 'common/menu' %>
-  <div class="col-md-9">
-  <%= link_to('新增商品', new_seller_product_path) %></br>
-  <hr>
-		<table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>商品圖片</th>
-                <th>商品名稱</th>
-                <th>商品類別</th>
-                <th>創建日期</th>
-                <th>編輯</th>
-                <th>刪除</th>
-            </tr>
-        </thead>
-        <% @products.each do |i| %>
-        <tbody>
-          <tr>	    
-          	<td><%= image_tag i.image_url(:small).to_s %></td>       
-            <td><%= i.name %></td>
-            <td><%= i.price %></td>
-            <td><%= i.created_at %></td>
-            <td><%= link_to('編輯', edit_seller_product_path(i)) %></td>          
-            <td><%= link_to('刪除', seller_product_path(i), method: :delete, data: {confirm: "確定要刪除此商品?"}) %></td>
-          </tr>
-        </tbody>
-        <% end %>
-    </table>
-  </div>
+<%= render 'seller/sellercommon/top' %>
+<%= render 'seller/sellercommon/menu' %>
+<div class="content">
+  <div class="header">      
+    <h1 class="page-title">商品</h1>
+            <ul class="breadcrumb">
+    <li><%= link_to('首頁', seller_products_path) %></li>    
+    <li class="active">商品管理</li>
+  </ul>
+  </div> 
+  <div class="main-content">
+  <div class="btn-toolbar list-toolbar">
+    <%= link_to new_seller_product_path, class: :"btn btn-primary" do %>
+      <i class="fa fa-plus">新增商品</i>
+    <% end %>
+  </div> 
+
+  <table class="table">   
+    <thead>
+      <tr>
+        <th>商品圖</th>
+        <th>商品名稱</th>
+        <th>創建日期</th>
+        <th style="width: 3.5em;"></th>
+      </tr>
+    </thead>
+    <% @products.each do |i| %>
+    <tbody>
+      <tr>
+        <td><%= image_tag i.image_url(:small)   %></td>
+        <td><%= i.name %></td>
+        <td><%= i.created_at %></td>
+        <td>
+            <%= link_to edit_seller_product_path(i) do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>            
+            <a href="#<%= i.id %>" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>            
+        </td>
+      </tr>
+    </tbody>
+    <div class="modal small fade" id="<%= i.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Delete Confirmation</h3>
+          </div>
+          <div class="modal-body">
+              <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete <%= i.name %>?</p>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              <%= link_to('Delete', seller_product_path(i), class: :"btn btn-danger", data: {dismiss: "modal"}, method: :delete) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </table>
+
+  <footer>
+      <hr>
+      <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
+      <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+      <p>© 2014 <a href="http://www.portnine.com" target="_blank">Shoes</a></p>
+  </footer>
 </div>
+
