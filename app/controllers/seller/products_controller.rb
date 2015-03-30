@@ -1,5 +1,5 @@
 class Seller::ProductsController < Seller::BaseController
-	before_action :myproduct, only: [:edit, :update, :destroy]
+	before_action :myproduct, only: [:edit, :update]
 	def index
 		@store = Store.find_by_user_id(current_user.id)
 		@products = StoreProduct.where(store_id: @store.id)

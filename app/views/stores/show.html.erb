@@ -1,0 +1,64 @@
+<!--content-->
+	<div class="content">
+	<div class="container">
+	<!-- products -->
+		<div class="products">
+			<div class="product-filter">
+				<h1><a href="#">商家資料</a></h1>
+				<div class="product-filter-grids"> 
+					<div class="col-md-3 product-filter-grid1-brands">
+						<h3>BRANDS</h3>
+						<ul class="col-md-6 unstyled-list b-list1">
+						<% @product_categories.each do |p| %>
+							<li><%= p.name %></li>
+						<% end %>
+							<div class="clearfix"></div>
+						</ul>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="col-md-6 product-filter-grid1-brands-col2">
+						<div class="producst-cate-grids">
+						<% @stores.each do |i| %>
+							<div class="col-md-4 producst-cate-grid text-center">
+								<h2><%= i.name %></h2>
+								<%= image_tag i.image_url(:store_seller), class: :"r-img text-center" do %>
+              	<% end %>
+								<h4>總商品數</h4>
+								<label><%= count_product(i.id) %></label>
+							</div>						
+						</div>
+						<div class="col-md-4 producst-cate-grid text-center">							
+							電話:<%= i.tel %>	
+						</div>
+						<% end %>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	<!-- //products -->
+	<!--speical-products-->
+	<div class="special-products all-poroducts">
+		<div class="s-products-head">
+			<div class="s-products-head-left">
+				<h3>商品列表</h3>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!--special-products-grids-->
+		<div class="special-products-grids">
+			<% @products.each do |s| %>
+			<div class="col-md-3 special-products-grid text-center">	
+				<%= image_tag s.image_url(:store_shoes), class: :"product-here", title: s.name %>
+				<h4><%= s.name %></h4>
+				<a class="product-btn" href="single-page.html"><span><s><%= s.origin_price %></s></span><big><%= s.price %></big><label> </label></a>
+			</div>
+			<% end %>
+			<div class="clearfix"> </div>
+		</div>
+		<!--//special-products-grids-->
+	</div>
+	</div>
+	</div>
+<!--content-->

@@ -1,5 +1,5 @@
 class Seller::ProductCategoriesController < Seller::BaseController
-	before_action :mystorecategory, only: [:edit, :update, :destroy]
+	before_action :mystorecategory, only: [:edit, :update]
 	def index
 		@store = Store.find_by_user_id(current_user.id)
 		@product_categories = ProductCategory.where(store_id: @store.id)

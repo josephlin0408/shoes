@@ -20,7 +20,7 @@ class Seller::SettingsController < Seller::BaseController
 
 	private
 	def setting_params
-		params.require(:store).permit(:name, :tel, :address, :zip)
+		params.require(:store).permit(:name, :tel, :address, :zip, :image)
 	end
 
 	def mystore

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Add
+gem 'jquery-easing-rails'
 gem 'bootstrap-sass-rails' 
 gem 'font-awesome-rails'
 gem 'bootstrap_form'

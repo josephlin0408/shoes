@@ -1,0 +1,62 @@
+<!--top-header-->
+<div class="top-header">
+  <div class="logo">
+    <%= link_to root_path do %>
+      <img src="../assets/frontend/logo.png" title="barndlogo" />
+    <% end %>
+  </div>
+  <div class="top-header-info">
+    <div class="top-contact-info">
+      <ul class="unstyled-list list-inline">
+        <li><span class="phone"> </span>090 - 223 44 66</li>
+        <li><span class="mail"> </span><a href="#">help@trendd.com</a></li>
+        <div class="clearfix"> </div>
+      </ul>
+    </div>
+    <div class="cart-details">
+      <div class="add-to-cart">
+        <ul class="unstyled-list list-inline">
+          <li><span class="cart"> </span>
+            <ul class="cart-sub">
+              <li><p>0 Products</p></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="login-rigister">
+        <ul class="unstyled-list list-inline">
+        	<% if user_signed_in? && current_user.admin? %>
+	        	<li><%= link_to '後台', seller_products_path, :class => 'login' %></li>
+	          <li><%= link_to '個人資料', edit_user_registration_path, :class => 'login' %></li>
+	          <li><%= link_to "登出", destroy_user_session_path, method: :delete, :class => 'login' %></li>
+          <% elsif user_signed_in? && current_user.seller? %>
+<li class="dropdown hidden-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span><%= current_user.name %>
+            <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+        	<li><%= link_to '後台', seller_products_path %></li>
+          <li><%= link_to '個人資料', edit_user_registration_path %></li>
+          <li><%= link_to "登出", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+	        <% elsif user_signed_in? %>  
+          	<li><%= link_to '個人資料', edit_user_registration_path, :class => 'login' %></li>
+	          <li><%= link_to "登出", destroy_user_session_path, method: :delete, :class => 'login' %></li>
+          <% else %>
+          	<li><%= link_to "會員註冊", new_user_registration_path, :class => 'login'  %></li>
+      	    <li><%= link_to new_user_session_path, :class => 'rigister' do %>
+          			登入<span></span>
+          	<% end %>
+          <% end %>
+          </li>
+          <div class="clearfix"> </div>
+        </ul>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+  <div class="clearfix"> </div>
+</div>
+<!--//top-header-->

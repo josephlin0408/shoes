@@ -15,4 +15,6 @@
 //= require_tree .
 //= require bootstrap
 //= require redactor-rails
-
+//= require jquery.easing
+//= require responsiveslides.min.js
+//= require move-top.js

@@ -1,1 +1,28 @@
-<%= render 'common/top' %>
+<%= render 'common/slidershow' %>
+<!--content-->
+<div class="content">
+  <div class="container">
+        <!--top-row-->
+        <div class="top-row">
+        <% @stores.each do |i| %>
+          <div class="col-xs-4">
+            <div class="top-row-col1 text-center">
+              <h2><%= i.name %></h2>
+              <%= image_tag i.image_url(:store), class: :"r-img text-center" do %>
+              <% end %>
+              <span><img src="../assets/frontend/obj1.png" title="name" /></span>
+              <h4>TOTAL</h4>
+              <label><%= count_product(i.id) %></label>
+              <%= link_to store_path(i), class: :"r-list-w" do %>
+                <img src="../assets/frontend/list-icon.png" title="list" />
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+          <div class="clearfix"> </div>
+        </div>    
+      <div class="clearfix"> </div>
+  </div>
+  <!--top-row-->
+  </div>
+<!--content-->

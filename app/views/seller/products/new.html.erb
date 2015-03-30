@@ -1,8 +1,5 @@
-<%= render 'seller/sellercommon/top' %>
-<%= render 'seller/sellercommon/menu' %>
 <div class="content">
-  <div class="header">
-    <%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
+  <div class="header">    
       <h1 class="page-title">新增商品</h1>
       <ul class="breadcrumb">
         <li><%= link_to('首頁', seller_products_path) %></li>
@@ -10,6 +7,7 @@
         <li class="active">新增商品</li>
     </ul>
   </div>
+  <%= bootstrap_form_for @product, url: seller_products_path(@product) do |n| %>
   <div class="main-content">            
     <div class="row">
       <div class="col-md-4">
